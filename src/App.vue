@@ -1,6 +1,5 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <Home msg="Welcome to Your Vue.js App"/>
+  <Home />
 </template>
 
 <script>
@@ -15,8 +14,13 @@ export default {
 </script>
 
 <style lang="scss">
+  @font-face {
+    font-family: "MagicOwl";
+    src: local("MagicOwl"),
+    url("./assets/fonts/MagicOwlPersonalUse-WyO0O.otf");
+  }
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: "MagicOwl", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

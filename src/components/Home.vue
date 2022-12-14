@@ -1,58 +1,90 @@
 <template>
-    <div class="hello">
-        <h1>{{ msg }}</h1>
-        <p>
-            For a guide and recipes on how to configure / customize this project,<br>
-            check out the
-            <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-        </p>
-        <h3>Installed CLI Plugins</h3>
-        <ul>
-            <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-            <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-        </ul>
-        <h3>Essential Links</h3>
-        <ul>
-            <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-            <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-            <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-            <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-            <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-        </ul>
-        <h3>Ecosystem</h3>
-        <ul>
-            <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-            <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-            <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-            <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-            <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-        </ul>
+    <div class="container">
+        <div class="row">
+            <div v-for="(book, index) in books" :key="index" class="col-4 card book-card">
+                <h5 class="card-title"> {{ book.fields.title }} </h5>
+                <div class="card-body">
+                    <font-awesome-icon :icon="['fas', 'check']" />
+                    <p class="card-text"> {{ book.fields.synopsis }} </p>
+                    <hr />
+                    <ul>
+                        <li class="item">
+                            <div> Author </div>
+                            <div> {{ book.fields.author }} </div>
+                        </li>
+                        <li class="item">
+                            <div> First published </div>
+                            <div> {{ book.fields.yearPublished }} </div>
+                        </li>
+                        <li class="item">
+                            <div> Category </div>
+                            <div> {{ book.fields.category }} </div>
+                        </li>
+                        <li class="item">
+                            <div> Goodreads rating </div>
+                            <div> {{ book.fields.goodreadsRating }} / 5 </div>
+                        </li>
+                        <li class="item">
+                            <div> My rating </div>
+                            <div> {{ book.fields.myRating }} / 5 </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
+    import { getShows, getBooks } from "@/api-client/api";
+
     export default {
         name: 'HelloWorld',
-        props: {
-            msg: String
+        data () {
+            return {
+                books: []
+            }
+        },
+        mounted () {
+            getShows().then(shows => {
+                console.log(shows.items)
+            })
+            getBooks().then(books => {
+                this.books = books.items;
+            })
         }
     }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+
 <style scoped lang="scss">
-    h3 {
-        margin: 40px 0 0;
+    .book-card {
+        border-radius: 20px;
     }
-    ul {
-        list-style-type: none;
+    .card-title {
+        background-color: #24292F;
+        color: white;
+        padding: 40px 20px;
+        font-weight: 700;
+        font-size: 35px;
+        border-radius: 20px 20px 0 0;
+        margin-bottom: 0;
+    }
+    .card-text {
+        font-size: 18px;
+    }
+    .item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    div[class*='col-4'] {
         padding: 0;
     }
-    li {
-        display: inline-block;
-        margin: 0 10px;
-    }
-    a {
-        color: #42b983;
+    ul {
+        padding: 0;
+        li {
+            border-bottom: 1px solid #2c3e50;
+        }
     }
 </style>
