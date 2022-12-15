@@ -1,14 +1,14 @@
 <template>
-  <Home />
+  <HomePage />
 </template>
 
 <script>
-import Home from './components/Home.vue'
+import HomePage from './views/HomePage.vue'
 
 export default {
   name: 'App',
   components: {
-    Home
+    HomePage
   }
 }
 </script>
@@ -25,6 +25,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin: 60px 0;
 }
 </style>

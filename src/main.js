@@ -8,4 +8,4 @@ import './assets/css/style.scss';
 document.title = 'Faran watches';
 const app = createApp(App);
 app.component('font-awesome-icon', FontAwesomeIcon);
-createApp(App).mount('#app')
+app.mount('#app');
