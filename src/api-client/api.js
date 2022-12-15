@@ -14,9 +14,12 @@ const api = ky.extend({
     },
 });
 
-const getStatus = async (startDate, endDate) => api.get(`${contenfulApiURL}?content_type=services&sys.createdAt[gte]=${startDate}&sys.createdAt[lte]=${endDate}&order=-sys.createdAt`, {}).json();
+const getShows = async () => api.get(`${contenfulApiURL}?content_type=shows`, {}).json();
+
+const getBooks = async () => api.get(`${contenfulApiURL}?content_type=books`, {}).json();
+
 
 export {
-    baseUrl,
-    getStatus,
+    getShows,
+    getBooks
 };

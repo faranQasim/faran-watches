@@ -1,0 +1,64 @@
+.info-badge {
+  position: absolute;
+  transform: rotate(-26deg);
+  background-color: #2c3e50;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: .2s all ease-in-out;
+  &:hover {
+    transform: scale(1.1);
+  }
+  @include media-breakpoint-only(xs) {
+    position: relative;
+    top: 0 !important;
+    left: 0 !important;
+    transform: rotate(0deg);
+    width: 40px;
+    height: 40px;
+  }
+  > svg {
+    width: 35px !important;
+    height: 35px;
+    @include media-breakpoint-only(xs) {
+      width: 25px !important;
+      height: 25px;
+    }
+  }
+  > div {
+    font-size: 35px;
+    cursor: default;
+    @include media-breakpoint-only(xs) {
+      font-size: 25px;
+    }
+  }
+}
+
+.card-title {
+  background-color: #24292F;
+  color: white;
+  padding: 40px 20px;
+  font-weight: 700;
+  font-size: 35px;
+  border-radius: 20px 20px 0 0;
+  margin-bottom: 0;
+}
+
+.card-text {
+  font-size: 18px;
+}
+
+
+ul {
+  padding: 0;
+  li {
+    border-bottom: 1px solid #2c3e50;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px 0;
+  }
+}
